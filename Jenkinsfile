@@ -1,26 +1,25 @@
-pipeline{
-    agent: any
+pipeline {
+    agent any
 
-
-    stages{
-        stage('Build'){
-            steps{
-                script{
+    stages {
+        stage('Build') {
+            steps {
+                script {
                     sh 'pip install -r requirements.txt'
                 }
             }
         }
-        stage('Test'){
-            steps{
-                script{
-                    sh 'pytest -v'
+        stage('Test') {
+            steps {
+                script {
+                    sh 'pytest'
                 }
             }
         }
-        stage('Deploy'){
-            steps{
-                script{
-                    sh 'python3 app.py'
+        stage('Deploy') {
+            steps {
+                script {
+                    sh 'python app.py'
                 }
             }
         }
