@@ -5,21 +5,28 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh 'pip install -r requirements.txt'
+                    // Create a virtual environment and install requirements
+                    sh '''
+                        python -m venv venv
+                        . venv/bin/activate
+                        pip install -r requirements.txt
+                    '''
                 }
             }
         }
         stage('Test') {
             steps {
                 script {
-                    sh 'pytest'
+                    // Activate virtual environment and run tests
+                    sh '. venv/bin/activate && pytest -v'
                 }
             }
         }
         stage('Deploy') {
             steps {
                 script {
-                    sh 'python app.py'
+                    // Activate virtual environment and start Flask application
+                    sh '. venv/bin/activate && python app.py'
                 }
             }
         }
