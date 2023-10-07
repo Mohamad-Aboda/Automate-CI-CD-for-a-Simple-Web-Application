@@ -7,7 +7,7 @@ pipeline {
                 script {
                     // Create a virtual environment and install requirements
                     sh '''
-                        python -m venv venv
+                        python3 -m venv venv
                         . venv/bin/activate
                         pip install -r requirements.txt
                     '''
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     // Activate virtual environment and start Flask application
-                    sh '. venv/bin/activate && python app.py'
+                    sh '. venv/bin/activate && python3 app.py'
                 }
             }
         }
