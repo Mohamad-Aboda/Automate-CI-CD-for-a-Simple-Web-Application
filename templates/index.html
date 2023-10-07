@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {% if task[2] %}
+                    <s>{{ task[1] }}</s>
+                {% else %}
+                    {{ task[1] }}
+                {% endif %}
+                <a href="{{ url_for('complete', task_id=task[0]) }}">Complete</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <form action="/add" method="post">
+        <label for="task">Task:</label>
+        <input type="text" id="task" name="task" required>
+        <button type="submit">Add Task</button>
+    </form>
+</body>
+</html>
+
